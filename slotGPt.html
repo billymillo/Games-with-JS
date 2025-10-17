@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
 
     <title>Chinese New Year Mahjong Slot</title>
@@ -25,6 +25,7 @@
             justify-content: center;
             overflow-x: hidden;
             position: relative;
+            padding: 10px;
         }
 
         body::before {
@@ -41,7 +42,7 @@
         .container {
             width: 100%;
             max-width: 1200px;
-            padding: 20px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -49,40 +50,41 @@
 
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             z-index: 10;
             position: relative;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: clamp(1.5rem, 5vw, 4rem);
             color: #FFD700;
             text-shadow: 0 0 10px #FF4500, 0 0 20px #FF0000;
             margin-bottom: 10px;
-            letter-spacing: 5px;
+            letter-spacing: 2px;
             font-weight: bold;
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(0.9rem, 3vw, 1.5rem);
             color: #FFEBCD;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 0 0 5px #8B0000;
         }
 
         .slot-machine {
-            width: 900px;
-            height: 700px;
+            width: 100%;
+            max-width: 900px;
+            min-height: 500px;
             background: linear-gradient(145deg, #8B0000, #A52A2A);
-            border-radius: 20px;
+            border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7),
                 inset 0 0 20px rgba(255, 215, 0, 0.3);
-            padding: 30px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
-            border: 8px solid #FFD700;
+            border: 4px solid #FFD700;
         }
 
         .slot-machine::before {
@@ -101,16 +103,16 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 15px;
-            height: 400px;
-            margin-bottom: 20px;
+            gap: clamp(8px, 2vw, 15px);
+            height: clamp(250px, 50vw, 400px);
+            margin-bottom: 15px;
             position: relative;
             z-index: 2;
         }
 
         .reel {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
             position: relative;
             box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5),
@@ -119,6 +121,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 60px;
         }
 
         .reel-inner {
@@ -139,9 +142,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: clamp(2rem, 5vw, 4rem);
             backface-visibility: hidden;
-            border-radius: 10px;
+            border-radius: 8px;
             background: linear-gradient(145deg, #FFF8DC, #FFEBCD);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transform: rotateX(0deg);
@@ -168,7 +171,7 @@
             width: 90%;
             height: 90%;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 6px;
             transition: transform 0.2s ease;
         }
 
@@ -188,7 +191,7 @@
 
         .win-text {
             color: #FFD700;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
             font-weight: bold;
             text-shadow: 0 0 10px #ffcc00;
             margin-top: 10px;
@@ -206,18 +209,6 @@
             }
         }
 
-        @keyframes bounce {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Overlay transparan menutupi slot */
-        /* Overlay fullscreen transparan */
         .win-overlay {
             position: fixed;
             top: 0;
@@ -225,7 +216,6 @@
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.5);
-            /* sedikit gelap */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -234,39 +224,34 @@
             animation: fadeIn 0.3s ease;
         }
 
-        /* Gambar GIF besar di belakang */
         .win-effect-img {
             position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0.4;
-            /* transparan agar teks tetap terlihat */
             z-index: 1;
         }
 
-        /* Teks kemenangan */
         .win-text {
             position: relative;
             z-index: 2;
             font-family: 'Bungee Spice', cursive;
-            /* font lebay slot style */
-            font-size: 4rem;
+            font-size: clamp(2rem, 8vw, 4rem);
             text-align: center;
             color: gold;
             text-shadow: 0 0 20px #ff0000, 0 0 40px #ff6600, 0 0 60px #ffff00;
             animation: pop 0.8s ease-out, glow 1.5s infinite alternate;
+            padding: 20px;
         }
 
-        /* Nilai poin */
         .win-amount {
             display: block;
-            font-size: 3rem;
+            font-size: clamp(1.5rem, 6vw, 3rem);
             color: #fffa65;
             text-shadow: 0 0 15px #ff0000, 0 0 25px #ff6600;
         }
 
-        /* Animasi */
         @keyframes pop {
             0% {
                 transform: scale(0);
@@ -313,12 +298,6 @@
             }
         }
 
-
-        /* ===================== */
-        /* 💥 EFEK KOMBO MENANG  */
-        /* ===================== */
-
-        /* Animasi pembesaran & glow merah */
         @keyframes comboZoom {
             0% {
                 transform: scale(1);
@@ -341,7 +320,6 @@
             }
         }
 
-        /* Efek background Olympus */
         .combo-bg {
             position: fixed;
             top: 0;
@@ -361,7 +339,6 @@
             animation: flicker 1.2s infinite alternate;
         }
 
-        /* Cahaya petir merah di belakang simbol menang */
         @keyframes redFlash {
 
             0%,
@@ -374,7 +351,6 @@
             }
         }
 
-        /* Pecahan tile (spark) */
         .combo-spark {
             position: absolute;
             width: 10px;
@@ -397,7 +373,6 @@
             }
         }
 
-        /* Flicker animasi Olympus background */
         @keyframes flicker {
             0% {
                 filter: brightness(1);
@@ -412,49 +387,14 @@
             }
         }
 
-
-
-
         .controls {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 15px;
             align-items: center;
             z-index: 2;
-            margin-top: 20px;
-        }
-
-        .spin-btn {
-            margin-right: 20px;
-            padding: 20px 50px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(145deg, #FF4500, #FF0000);
-            color: #FFD700;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .spin-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.7);
-            background: linear-gradient(145deg, #FF6347, #FF4500);
-        }
-
-        .spin-btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 10px rgba(255, 69, 0, 0.5);
-        }
-
-        .spin-btn:disabled {
-            background: linear-gradient(145deg, #666, #444);
-            box-shadow: none;
-            cursor: not-allowed;
-            transform: none;
+            margin-top: 15px;
+            width: 100%;
         }
 
         .info-panel {
@@ -462,16 +402,18 @@
             flex-direction: column;
             align-items: center;
             background: rgba(0, 0, 0, 0.4);
-            padding: 20px 30px;
-            border-radius: 15px;
+            padding: 15px 20px;
+            border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border: 2px solid #FFD700;
+            width: 100%;
+            max-width: 350px;
         }
 
         .balance,
         .bet {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
         }
@@ -490,31 +432,101 @@
         }
 
         .bet-btn {
-            width: 50px;
-            height: 50px;
+            width: clamp(40px, 10vw, 50px);
+            height: clamp(40px, 10vw, 50px);
             border-radius: 50%;
             background: linear-gradient(145deg, #8B0000, #A52A2A);
             color: #FFD700;
             border: 2px solid #FFD700;
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 10px;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            touch-action: manipulation;
         }
 
-        .bet-btn:hover {
+        .bet-btn:active {
             background: linear-gradient(145deg, #A52A2A, #8B0000);
+            transform: scale(0.95);
+        }
+
+        .spin-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .spin-btn {
+            padding: clamp(15px, 4vw, 20px) clamp(40px, 10vw, 50px);
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            font-weight: bold;
+            background: linear-gradient(145deg, #FF4500, #FF0000);
+            color: #FFD700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            touch-action: manipulation;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .spin-btn:active {
+            transform: translateY(2px) scale(0.98);
+            box-shadow: 0 3px 10px rgba(255, 69, 0, 0.5);
+        }
+
+        .spin-btn:disabled {
+            background: linear-gradient(145deg, #666, #444);
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auto-btn {
+            padding: clamp(12px, 3vw, 15px) clamp(30px, 8vw, 40px);
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: bold;
+            background: linear-gradient(145deg, #006400, #228B22);
+            color: #FFD700;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            touch-action: manipulation;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .auto-btn:active {
+            transform: translateY(2px) scale(0.98);
+            box-shadow: 0 3px 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .auto-btn.active {
+            background: linear-gradient(145deg, #FFD700, #FFA500);
+            color: #8B0000;
+            box-shadow: 0 0 20px #FFD700;
         }
 
         .paytable {
-            margin-top: 30px;
-            width: 900px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 900px;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border: 2px solid #FFD700;
         }
@@ -523,35 +535,36 @@
             color: #FFD700;
             text-align: center;
             margin-bottom: 15px;
-            font-size: 2rem;
+            font-size: clamp(1.3rem, 4vw, 2rem);
         }
 
         .paytable-items {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
         }
 
         .paytable-item {
             display: flex;
             align-items: center;
             background: rgba(255, 215, 0, 0.1);
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             border: 1px solid #FFD700;
         }
 
         .paytable-symbol {
-            font-size: 3rem;
-            margin-right: 15px;
-            width: 70px;
-            height: 70px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-right: 12px;
+            width: clamp(50px, 15vw, 70px);
+            height: clamp(50px, 15vw, 70px);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 8px;
             background: linear-gradient(145deg, #FFF8DC, #FFEBCD);
             border: 2px solid #8B0000;
+            flex-shrink: 0;
         }
 
         .paytable-details {
@@ -560,125 +573,180 @@
 
         .paytable-name {
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             color: #FFEBCD;
         }
 
         .paytable-payout {
             color: #FFD700;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: clamp(0.85rem, 2.2vw, 1.1rem);
         }
 
-        /* Effects */
-        .dragon {
+        .chinese-ornament {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0;
+            width: clamp(50px, 10vw, 100px);
+            height: clamp(50px, 10vw, 100px);
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD700" d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z M50,30 C40,30 30,40 30,50 C30,60 40,70 50,70 C60,70 70,60 70,50 C70,40 60,30 50,30 Z"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
         }
 
-        .dragon-path {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+        .ornament-top-left {
+            top: 5px;
+            left: 5px;
         }
 
-        .dragon-svg {
-            width: 100%;
-            height: 100%;
-            fill: none;
-            stroke: #FFD700;
-            stroke-width: 3;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: drawDragon 3s ease-out forwards;
+        .ornament-top-right {
+            top: 5px;
+            right: 5px;
         }
 
-        @keyframes drawDragon {
-            to {
-                stroke-dashoffset: 0;
+        .ornament-bottom-left {
+            bottom: 5px;
+            left: 5px;
+        }
+
+        .ornament-bottom-right {
+            bottom: 5px;
+            right: 5px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #FFEBCD;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            padding: 0 15px;
+        }
+
+        .sound-controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 9999;
+        }
+
+        .sound-btn {
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: clamp(6px, 2vw, 8px) clamp(10px, 3vw, 12px);
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            transition: 0.2s ease;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            touch-action: manipulation;
+        }
+
+        .sound-btn:active {
+            background: rgba(255, 100, 0, 1);
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 5px;
+            }
+
+            .slot-machine {
+                padding: 12px;
+                border-width: 3px;
+            }
+
+            .reels-container {
+                gap: 8px;
+            }
+
+            .controls {
+                gap: 12px;
+            }
+
+            .paytable {
+                padding: 12px;
+            }
+
+            .paytable-items {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
         }
 
-        .firework {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #FFD700;
-            box-shadow: 0 0 10px #FF4500;
-            opacity: 0;
-            z-index: 6;
-        }
-
-        .scatter-effect {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0;
-        }
-
-        .scatter-circle {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #FFD700, transparent);
-            opacity: 0.7;
-            filter: blur(10px);
-            animation: scatterPulse 1s ease-out;
-        }
-
-        @keyframes scatterPulse {
-            0% {
-                transform: scale(0);
-                opacity: 0.7;
+        @media (max-width: 480px) {
+            h1 {
+                letter-spacing: 1px;
             }
 
-            100% {
-                transform: scale(3);
-                opacity: 0;
+            .slot-machine {
+                padding: 10px;
+                border-width: 2px;
+                border-radius: 12px;
+            }
+
+            .reels-container {
+                gap: 6px;
+            }
+
+            .reel {
+                border-radius: 8px;
+            }
+
+            .tile {
+                border-radius: 6px;
+            }
+
+            .info-panel {
+                padding: 12px 15px;
+            }
+
+            .chinese-ornament {
+                display: none;
             }
         }
 
-        .jackpot-effect {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5rem;
-            color: #FFD700;
-            text-shadow: 0 0 10px #FF4500, 0 0 20px #FF0000;
-            opacity: 0;
-            z-index: 7;
-            animation: jackpotText 2s ease-out;
-        }
-
-        @keyframes jackpotText {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
+        @media (orientation: landscape) and (max-height: 600px) {
+            .container {
+                padding: 5px;
             }
 
-            50% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.2);
+            header {
+                margin-bottom: 10px;
             }
 
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1);
+            .subtitle {
+                margin-bottom: 8px;
+            }
+
+            .slot-machine {
+                padding: 10px;
+            }
+
+            .reels-container {
+                height: 35vh;
+                margin-bottom: 10px;
+            }
+
+            .controls {
+                margin-top: 8px;
+                gap: 8px;
+            }
+
+            .paytable {
+                margin-top: 15px;
+            }
+
+            footer {
+                margin-top: 15px;
+                font-size: 0.8rem;
             }
         }
 
@@ -720,164 +788,7 @@
                 opacity: 1;
             }
         }
-
-        .chinese-ornament {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD700" d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C30,90 10,70 10,50 C10,30 30,10 50,10 Z M50,30 C40,30 30,40 30,50 C30,60 40,70 50,70 C60,70 70,60 70,50 C70,40 60,30 50,30 Z"/></svg>');
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .ornament-top-left {
-            top: 10px;
-            left: 10px;
-        }
-
-        .ornament-top-right {
-            top: 10px;
-            right: 10px;
-        }
-
-        .ornament-bottom-left {
-            bottom: 10px;
-            left: 10px;
-        }
-
-        .ornament-bottom-right {
-            bottom: 10px;
-            right: 10px;
-        }
-
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            color: #FFEBCD;
-            font-size: 1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 950px) {
-
-            .slot-machine,
-            .paytable {
-                width: 95%;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .tile {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .reels-container {
-                height: 300px;
-            }
-
-            .tile {
-                font-size: 2rem;
-            }
-
-            .paytable-items {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* ⚡ Thunder Effect */
-        .thunder-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle, rgba(0, 150, 255, 0.2) 0%, rgba(0, 0, 50, 0.8) 100%);
-            pointer-events: none;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .thunder-img {
-            width: 80%;
-            opacity: 0.8;
-            filter: drop-shadow(0 0 40px #00ccff);
-        }
-
-        /* WILD glow tambahan */
-        .wild-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 0, 0.15) 0%, rgba(255, 215, 0, 0.25) 100%);
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .wild-img {
-            width: 40%;
-            opacity: 0.9;
-            animation: pulseWild 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulseWild {
-            from {
-                transform: scale(1);
-                filter: brightness(1.2);
-            }
-
-            to {
-                transform: scale(1.15);
-                filter: brightness(2);
-            }
-        }
-
-        /* Tombol Auto Spin */
-        .spin-controls {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .auto-btn {
-            margin-top: 15px;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            background: linear-gradient(145deg, #006400, #228B22);
-            color: #FFD700;
-            border: none;
-            border-radius: 40px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .auto-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 255, 0, 0.6);
-            background: linear-gradient(145deg, #32CD32, #228B22);
-        }
-
-        .auto-btn.active {
-            background: linear-gradient(145deg, #FFD700, #FFA500);
-            color: #8B0000;
-            box-shadow: 0 0 20px #FFD700;
-        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/tile1.jpg">
 
 </head>
@@ -885,7 +796,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>WIKRAMA FORTUNE SLOTS</h1>
+            <h1>GUY FORTUNE SLOTS</h1>
             <p class="subtitle">Selamat Tahun Baru Imlek! Raih keberuntungan Anda!</p>
         </header>
 
@@ -899,7 +810,6 @@
                 <!-- Reels will be generated by JavaScript -->
             </div>
 
-            <!-- Panel kontrol utama -->
             <div class="controls">
                 <div class="info-panel">
                     <div class="balance">💰 Saldo: <span id="balance">1000</span></div>
@@ -910,7 +820,6 @@
                     </div>
                 </div>
 
-                <!-- Tombol putar -->
                 <div class="spin-control">
                     <button class="spin-btn" id="spinBtn">PUTAR!</button>
                     <button class="auto-btn" id="autoSpinBtn">AUTO SPIN</button>
@@ -926,7 +835,7 @@
         </div>
 
         <footer>
-            <p>© 2025 Wikrama Fortune Slots - Semoga beruntung di Tahun Baru Imlek!</p>
+            <p>© 2025 Fortune Slots - Semoga beruntung di Tahun Baru Imlek!</p>
         </footer>
     </div>
 
@@ -935,15 +844,13 @@
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(amount);
         }
 
-
-        // Game variables
         let stopSpin = false;
-        let balance = 1000;
-        let currentBet = 100;
+        let balance = 1000000;
+        let currentBet = 2000;
         let isSpinning = false;
         let autoSpinActive = false;
         let autoSpinInterval = null;
-        const CHANCE_TO_WIN = 0.1;
+        const CHANCE_TO_WIN = 0.2;
 
         let tiles = [
             'assets/tile1.jpg',
@@ -958,7 +865,17 @@
         let wildSymbol = 'assets/wild.jpg';
         let jackpotSymbol = 'assets/jackpot.jpg';
 
-        // DOM
+        const PAYLINES = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
         const balanceElement = document.getElementById('balance');
         const betElement = document.getElementById('bet');
         const spinBtn = document.getElementById('spinBtn');
@@ -967,17 +884,68 @@
         const reelsContainer = document.getElementById('reelsContainer');
         const autoSpinBtn = document.getElementById('autoSpinBtn');
 
-        // Initialize the game
+        const sounds = {
+            bgm: new Audio('assets/bgm.mp3'),
+            spin: new Audio('assets/spin.mp3'),
+            jackpot: new Audio('assets/jackpot.mp3'),
+            scatter: new Audio('assets/scatter.mp3'),
+            win: new Audio('assets/jackpot.mp3')
+        };
+
+        sounds.bgm.loop = true;
+        sounds.bgm.volume = 0.3;
+        sounds.spin.volume = 0.7;
+        sounds.jackpot.volume = 0.9;
+        sounds.scatter.volume = 0.8;
+        sounds.win.volume = 0.8;
+
+        let musicEnabled = true;
+        let sfxEnabled = true;
+
+        function playSound(name) {
+            if (!sounds[name]) return;
+            if (!sfxEnabled && name !== 'bgm') return;
+            sounds[name].currentTime = 0;
+            sounds[name].play().catch(err => {
+                console.log(`Audio ${name} gagal dimainkan:`, err);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const soundContainer = document.createElement('div');
+            soundContainer.className = 'sound-controls';
+            soundContainer.innerHTML = `
+                <button id="toggleBgm" class="sound-btn">🎵 Music</button>
+                <button id="toggleSfx" class="sound-btn">🔊 SFX</button>
+            `;
+            document.body.appendChild(soundContainer);
+
+            document.getElementById('toggleBgm').addEventListener('click', () => {
+                musicEnabled = !musicEnabled;
+                if (musicEnabled) {
+                    sounds.bgm.play();
+                    document.getElementById('toggleBgm').textContent = '🎵 Music ON';
+                } else {
+                    sounds.bgm.pause();
+                    document.getElementById('toggleBgm').textContent = '🎵 Music OFF';
+                }
+            });
+
+            document.getElementById('toggleSfx').addEventListener('click', () => {
+                sfxEnabled = !sfxEnabled;
+                document.getElementById('toggleSfx').textContent = sfxEnabled ? '🔊 SFX ON' : '🔇 SFX OFF';
+            });
+        });
+
         function initGame() {
             updateDisplay();
             generatePaytable();
             initializeReels();
 
             spinBtn.addEventListener('click', spinReels);
-            decreaseBetBtn.addEventListener('click', () => changeBet(-100));
-            increaseBetBtn.addEventListener('click', () => changeBet(100));
+            decreaseBetBtn.addEventListener('click', () => changeBet(-1000));
+            increaseBetBtn.addEventListener('click', () => changeBet(1000));
 
-            // AUTO SPIN
             autoSpinBtn.addEventListener("click", () => {
                 if (!autoSpinActive) {
                     autoSpinActive = true;
@@ -992,7 +960,6 @@
                     stopAutoSpin();
                 }
             });
-
         }
 
         function stopAutoSpin() {
@@ -1002,173 +969,20 @@
             clearInterval(autoSpinInterval);
         }
 
-        // ===========================
-        // 🎵 SOUND SYSTEM MAHJONG SLOT
-        // ===========================
-
-        // 🎶 Daftar Suara (pastikan file ada di /assets/sounds/)
-        const sounds = {
-            bgm: new Audio('assets/bgm.mp3'),
-            spin: new Audio('assets/spin.mp3'),
-            jackpot: new Audio('assets/jackpot.mp3'),
-            scatter: new Audio('assets/scatter.mp3'),
-            win: new Audio('assets/jackpot.mp3')
-        };
-
-
-        // 🔄 Pengaturan awal audio
-        sounds.bgm.loop = true;
-        sounds.bgm.volume = 0.3;
-
-        sounds.spin.volume = 0.7;
-        sounds.jackpot.volume = 0.9;
-        sounds.scatter.volume = 0.8;
-        sounds.win.volume = 0.8;
-
-        // 🔊 Variabel global untuk kontrol
-        let musicEnabled = true;
-        let sfxEnabled = true;
-
-        // Fungsi utama play sound
-        function playSound(name) {
-            if (!sounds[name]) return;
-
-            // Cegah SFX kalau dimatikan
-            if (!sfxEnabled && name !== 'bgm') return;
-
-            // Reset audio biar bisa main ulang
-            sounds[name].currentTime = 0;
-            sounds[name].play().catch(err => {
-                console.log(`Audio ${name} gagal dimainkan:`, err);
-            });
-        }
-
-        // ===========================
-        // 🔘 TOMBOL CONTROL (OPSIONAL)
-        // ===========================
-        document.addEventListener('DOMContentLoaded', () => {
-            // Tambahkan tombol kontrol di UI
-            const soundContainer = document.createElement('div');
-            soundContainer.className = 'sound-controls';
-            soundContainer.innerHTML = `
-        <button id="toggleBgm" class="sound-btn">🎵 Music</button>
-        <button id="toggleSfx" class="sound-btn">🔊 SFX</button>
-    `;
-            document.body.appendChild(soundContainer);
-
-            // Event toggle background music
-            document.getElementById('toggleBgm').addEventListener('click', () => {
-                musicEnabled = !musicEnabled;
-                if (musicEnabled) {
-                    sounds.bgm.play();
-                    document.getElementById('toggleBgm').textContent = '🎵 Music ON';
-                } else {
-                    sounds.bgm.pause();
-                    document.getElementById('toggleBgm').textContent = '🎵 Music OFF';
-                }
-            });
-
-            // Event toggle efek suara
-            document.getElementById('toggleSfx').addEventListener('click', () => {
-                sfxEnabled = !sfxEnabled;
-                document.getElementById('toggleSfx').textContent = sfxEnabled ? '🔊 SFX ON' : '🔇 SFX OFF';
-            });
-        });
-
-        // ===========================
-        // 🎰 PEMANGGILAN EVENT SUARA
-        // ===========================
-
-        // Saat tombol spin ditekan
-        function startSpin() {
-            if (isSpinning) return;
-            isSpinning = true;
-
-            // Putar suara spin
-            playSound('spin');
-
-            // Jalankan musik latar jika belum aktif
-            if (musicEnabled && sounds.bgm.paused) {
-                sounds.bgm.play();
-            }
-
-            // Lanjut ke animasi spin kamu...
-        }
-
-        // Saat hasil spin keluar (contoh event)
-        function handleSpinResult(result) {
-            // Contoh: Jika ada jackpot
-            if (result.includes('jackpot')) {
-                playSound('jackpot');
-                triggerJackpotEffect(); // efek visual
-            }
-            // Kalau scatter
-            else if (result.includes('scatter')) {
-                playSound('scatter');
-                triggerScatterEffect();
-            }
-            // Kalau menang biasa
-            else if (result.win > 0) {
-                playSound('win');
-            }
-
-            isSpinning = false;
-        }
-
-        // ===========================
-        // 💅 CSS TAMBAHAN (optional)
-        // ===========================
-        const style = document.createElement('style');
-        style.innerHTML = `
-.sound-controls {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 9999;
-}
-.sound-btn {
-    background: rgba(255, 0, 0, 0.8);
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    padding: 8px 12px;
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
-    transition: 0.2s ease;
-}
-.sound-btn:hover {
-    background: rgba(255, 100, 0, 1);
-    transform: scale(1.05);
-}
-`;
-        document.head.appendChild(style);
-
-
-
-        // Update display
-               function updateDisplay() {
+        function updateDisplay() {
             balanceElement.textContent = formatRupiah(balance);
             betElement.textContent = formatRupiah(currentBet);
-
-            // Disable spin button jika saldo kurang
             spinBtn.disabled = balance < currentBet || isSpinning;
         }
 
-
-        // Change bet amount
         function changeBet(amount) {
             const newBet = currentBet + amount;
-            if (newBet >= 100 && newBet <= 1000) {
+            if (newBet >= 100 && newBet <= 10000000000000000) {
                 currentBet = newBet;
                 updateDisplay();
             }
         }
 
-        // Ubah fungsi generatePaytable:
         function generatePaytable() {
             const paytableItems = document.querySelector('.paytable-items');
             const paytableData = [
@@ -1208,7 +1022,6 @@
             });
         }
 
-        // Initialize reels with tiles
         function initializeReels() {
             reelsContainer.innerHTML = '';
 
@@ -1243,15 +1056,11 @@
             updateDisplay();
 
             const reels = document.querySelectorAll('.reel .reel-inner');
+            const isWinningSpin = Math.random() < CHANCE_TO_WIN / 100;
 
-            // Tentukan apakah spin ini harus menjadi "winning spin"
-            const isWinningSpin = Math.random() < CHANCE_TO_WIN;
-
-            // Versi animasi dipercepat: durasi lebih singkat & putaran dikurangi
             const spinPromises = Array.from(reels).map((reel, index) => {
                 return new Promise(resolve => {
-                    // Durasi lebih pendek dan delay antar reel kecil agar terasa cepat
-                    const spinDuration = 600 + index * 120; // sebelumnya 1200 + index*300
+                    const spinDuration = 600 + index * 120;
                     let startTime = null;
 
                     const spin = (timestamp) => {
@@ -1263,7 +1072,7 @@
                         if (!startTime) startTime = timestamp;
                         const elapsed = timestamp - startTime;
                         const progress = Math.min(1, elapsed / spinDuration);
-                        const rotation = progress * 720; // 2 putaran penuh (lebih cepat)
+                        const rotation = progress * 720;
 
                         reel.style.transform = `rotateX(${rotation}deg)`;
 
@@ -1280,13 +1089,8 @@
             });
 
             Promise.all(spinPromises).then(() => {
-                // Jika spin dianggap menang, "paksa" satu baris menjadi menang sebelum pengecekan
                 if (isWinningSpin) {
                     forceWinRow();
-                } else {
-                    // optionally, pastikan tidak ada 3-of-a-kind accidental:
-                    // (tidak wajib — comment di bawah jika ingin paksa non-win)
-                    // ensureNoAccidentalWin();
                 }
 
                 isSpinning = false;
@@ -1295,110 +1099,42 @@
             });
         }
 
-        function stopAllSpins() {
-            stopSpin = true;
-        }
-
-        // Finalize reel position after spinning
-
-        autoSpinBtn.addEventListener('click', () => {
-            if (autoSpinInterval) {
-                clearInterval(autoSpinInterval);
-                autoSpinInterval = null;
-                autoSpinBtn.textContent = 'AUTO SPIN';
-            } else {
-                autoSpinBtn.textContent = 'STOP AUTO';
-                autoSpinInterval = setInterval(() => {
-                    if (!isSpinning) spinReels();
-                }, 2500);
-            }
-        });
-
-        /** Random symbol dengan probabilitas: jackpot 1%, scatter 3%, wild 6%, tile lainnya sisa */
         function getRandomSymbol() {
             const rand = Math.random();
-            if (rand < 0.005) return jackpotSymbol;      // 1% jackpot
-            if (rand < 0.04) return scatterSymbol;      // 3% scatter
-            if (rand < 0.10) return wildSymbol;         // 6% wild
+            if (rand < 0.005) return jackpotSymbol;
+            if (rand < 0.04) return scatterSymbol;
+            if (rand < 0.10) return wildSymbol;
             return tiles[Math.floor(Math.random() * tiles.length)];
         }
 
         function forceWinRow() {
-            // Pilih random row 0..2 untuk menjadi row pemenang
-            const rowIndex = Math.floor(Math.random() * 3); // 0,1,2
-            // Pilih simbol pemenang (hindari jackpot terlalu sering; bias ke tile biasa atau wild)
+            const payline = PAYLINES[Math.floor(Math.random() * PAYLINES.length)];
             const pickRand = Math.random();
             let winSymbol;
-            if (pickRand < 0.05) {
-                winSymbol = jackpotSymbol; // 5% dari win-case jadi jackpot
-            } else if (pickRand < 0.20) {
-                winSymbol = wildSymbol; // 15% jadi wild
-            } else if (pickRand < 0.35) {
-                winSymbol = scatterSymbol; // 15% scatter
-            } else {
-                winSymbol = tiles[Math.floor(Math.random() * tiles.length)]; // sisanya symbol biasa
-            }
+            if (pickRand < 0.05) winSymbol = jackpotSymbol;
+            else if (pickRand < 0.20) winSymbol = wildSymbol;
+            else if (pickRand < 0.35) winSymbol = scatterSymbol;
+            else winSymbol = tiles[Math.floor(Math.random() * tiles.length)];
 
-            // Set symbol ke tiga tile pada baris terpilih
-            const base = rowIndex * 3;
-            for (let i = 0; i < 3; i++) {
-                const tileDiv = document.querySelectorAll('.reel .tile')[base + i];
-                if (!tileDiv) continue;
+            payline.forEach(idx => {
+                const tileDiv = document.querySelectorAll('.reel .tile')[idx];
+                if (!tileDiv) return;
                 tileDiv.dataset.symbol = winSymbol;
                 tileDiv.innerHTML = `<img src="${winSymbol}" class="tile-image">`;
                 tileDiv.classList.add('force-win');
-            }
+            });
         }
 
-
         function finalizeReel(reel, index) {
-            // Set posisi akhir dan isi simbol berdasarkan probabilitas
             reel.style.transform = 'rotateX(0deg)';
             const tile = reel.querySelector('.tile');
 
             const symbol = getRandomSymbol();
             tile.dataset.symbol = symbol;
             tile.innerHTML = `<img src="${symbol}" class="tile-image">`;
-            // reset classes (hilangkan highlight lama)
             tile.className = 'tile';
         }
 
-        function setupAutoSpinButton() {
-            // Pastikan tidak ada listener duplikat
-            autoSpinBtn.removeEventListener('click', toggleAutoSpin);
-            autoSpinBtn.addEventListener('click', toggleAutoSpin);
-        }
-
-        function toggleAutoSpin() {
-            if (!autoSpinActive) {
-                // start
-                autoSpinActive = true;
-                autoSpinBtn.classList.add("active");
-                autoSpinBtn.textContent = "STOP AUTO";
-
-                autoSpinInterval = setInterval(() => {
-                    if (!isSpinning && balance >= currentBet) {
-                        spinReels();
-                    } else if (balance < currentBet) {
-                        // stop otomatis bila saldo kurang
-                        toggleAutoSpin();
-                    }
-                }, 1500); // interval lebih cepat (1.5s). ubah sesuai selera
-            } else {
-                // stop
-                autoSpinActive = false;
-                autoSpinBtn.classList.remove("active");
-                autoSpinBtn.textContent = "AUTO SPIN";
-                if (autoSpinInterval) {
-                    clearInterval(autoSpinInterval);
-                    autoSpinInterval = null;
-                }
-            }
-        }
-
-
-
-        // Check for winning combinations
         function checkWins() {
             const tilesDOM = document.querySelectorAll('.reel .tile');
             const results = Array.from(tilesDOM).map(tile => ({
@@ -1409,14 +1145,11 @@
             let winAmount = 0;
             let hasScatter = false;
             let hasJackpot = false;
-            let hasAnyRowWin = false;
 
-            // Hitung scatter/jackpot secara global
             const scatterCount = results.filter(r => r.symbol === scatterSymbol).length;
             if (scatterCount >= 3) {
                 hasScatter = true;
                 triggerScatterEffect();
-                // contoh reward scatter: currentBet * 5 per scatter
                 winAmount += currentBet * scatterCount * 3;
             }
 
@@ -1427,63 +1160,65 @@
                 winAmount += currentBet * 1000;
             }
 
-            // Cek 3 baris horizontal
-            for (let i = 0; i < 3; i++) {
-                const row = [results[i * 3], results[i * 3 + 1], results[i * 3 + 2]];
-                if (!row[0] || !row[1] || !row[2]) continue;
+            PAYLINES.forEach(line => {
+                const lineTiles = line.map(i => results[i]).filter(Boolean);
+                if (lineTiles.length !== 3) return;
 
-                if (row[0].symbol && row[0].symbol === row[1].symbol && row[1].symbol === row[2].symbol) {
-                    hasAnyRowWin = true;
-                    const symbol = row[0].symbol;
+                let baseSymbol = lineTiles.find(t => t.symbol !== wildSymbol)?.symbol || lineTiles[0].symbol;
+                const allMatch = lineTiles.every(t => (t.symbol === baseSymbol) || (t.symbol === wildSymbol) || (baseSymbol === wildSymbol));
+
+                if (allMatch) {
                     let multiplier = 1;
-
-                    if (symbol === jackpotSymbol) multiplier = 1000;
-                    else if (symbol === scatterSymbol) multiplier = 10;
-                    else if (symbol === wildSymbol) multiplier = 8;
-                    else {
-                        // buat variasi multipler untuk simbol biasa
-                        const randMult = Math.random();
-                        if (randMult < 0.25) multiplier = 2;
-                        else if (randMult < 0.6) multiplier = 3;
-                        else multiplier = 5; // kadang lebih besar
-                    }
+                    if (baseSymbol === jackpotSymbol) multiplier = 1000;
+                    else if (baseSymbol === scatterSymbol) multiplier = 10;
+                    else if (baseSymbol === wildSymbol) multiplier = 8;
+                    else multiplier = 5;
 
                     winAmount += currentBet * multiplier;
 
-                    // highlight winning tiles
-                    row.forEach(r => {
-                        r.element.classList.add('win-highlight');
-                        r.element.classList.add('tile-break');
+                    lineTiles.forEach(t => {
+                        t.element.classList.add('win-highlight');
+                        t.element.classList.add('tile-break');
+                        t.element.style.zIndex = '100';
                     });
 
-                    // efek combo
-                    triggerComboEffect(row.map(r => r.element));
+                    triggerComboEffect(lineTiles.map(t => t.element));
                 }
-            }
+            });
 
-            // Tambahkan kemenangan ke saldo
             if (winAmount > 0) {
                 balance += winAmount;
-                if (hasJackpot) {
-                    showWinEffect(winAmount, true);
-                } else {
-                    showWinEffect(winAmount, false);
-                }
+                showWinEffect(winAmount, hasJackpot);
+                playSound(hasJackpot ? 'jackpot' : 'win');
             }
 
             updateDisplay();
         }
-        // Efek Scatter (Cahaya & Lingkaran emas)
+
         function triggerScatterEffect() {
             const effect = document.createElement('div');
             effect.className = 'scatter-effect';
+            effect.style.position = 'fixed';
+            effect.style.top = '0';
+            effect.style.left = '0';
+            effect.style.width = '100vw';
+            effect.style.height = '100vh';
+            effect.style.pointerEvents = 'none';
+            effect.style.zIndex = '9998';
             document.body.appendChild(effect);
 
             for (let i = 0; i < 5; i++) {
                 const circle = document.createElement('div');
-                circle.className = 'scatter-circle';
+                circle.style.position = 'absolute';
+                circle.style.width = '100px';
+                circle.style.height = '100px';
+                circle.style.borderRadius = '50%';
+                circle.style.background = 'radial-gradient(circle, #FFD700, transparent)';
+                circle.style.opacity = '0.7';
+                circle.style.filter = 'blur(10px)';
                 circle.style.left = `${Math.random() * 100}%`;
                 circle.style.top = `${Math.random() * 100}%`;
+                circle.style.animation = 'scatterPulse 1s ease-out';
                 effect.appendChild(circle);
             }
 
@@ -1491,201 +1226,73 @@
             setTimeout(() => effect.remove(), 1500);
         }
 
-        // Efek Jackpot (Teks besar & Kembang api)
         function triggerJackpotEffect() {
             const jackpotText = document.createElement('div');
-            jackpotText.className = 'jackpot-effect';
+            jackpotText.style.position = 'fixed';
+            jackpotText.style.top = '50%';
+            jackpotText.style.left = '50%';
+            jackpotText.style.transform = 'translate(-50%, -50%)';
+            jackpotText.style.fontSize = 'clamp(3rem, 10vw, 5rem)';
+            jackpotText.style.color = '#FFD700';
+            jackpotText.style.textShadow = '0 0 10px #FF4500, 0 0 20px #FF0000';
+            jackpotText.style.opacity = '0';
+            jackpotText.style.zIndex = '9999';
             jackpotText.textContent = '🎆 JACKPOT 🎆';
             document.body.appendChild(jackpotText);
 
-            // Tambah efek kembang api acak
-            for (let i = 0; i < 10; i++) {
-                const fw = document.createElement('div');
-                fw.className = 'firework';
-                fw.style.left = `${Math.random() * 100}%`;
-                fw.style.top = `${Math.random() * 100}%`;
-                document.body.appendChild(fw);
-
-                setTimeout(() => {
-                    fw.style.opacity = 1;
-                    fw.animate([
-                        { transform: 'scale(1)', opacity: 1 },
-                        { transform: 'scale(5)', opacity: 0 }
-                    ], {
-                        duration: 1000,
-                        easing: 'ease-out'
-                    });
-                }, i * 100);
-
-                setTimeout(() => fw.remove(), 2000);
-                triggerThunderEffect();
-
-            }
+            jackpotText.animate([
+                { opacity: 0, transform: 'translate(-50%, -50%) scale(0.5)' },
+                { opacity: 1, transform: 'translate(-50%, -50%) scale(1.2)' },
+                { opacity: 0, transform: 'translate(-50%, -50%) scale(1)' }
+            ], { duration: 2000, easing: 'ease-out' });
 
             setTimeout(() => jackpotText.remove(), 2500);
+            playSound('jackpot');
         }
 
-        // Efek kemenangan atau jackpot
         function showWinEffect(amount, isJackpot = false) {
-            // Pilih kata acak untuk efek keren
-            const winWords = ["Amazing!", "Incredible!", "Mega Win!", "Superb!", "Good!", "Unbelievable!", "Fantastic!", "Zeus Bless You!"];
+            const winWords = ["Amazing!", "Incredible!", "Mega Win!", "Superb!", "Good!", "Unbelievable!", "Fantastic!", "Zeus Bless You!", "Gacor King!!!"];
             const randomWord = isJackpot ? "💥 JACKPOT!!! 💥" : winWords[Math.floor(Math.random() * winWords.length)];
 
-            // Buat elemen overlay transparan fullscreen
             const overlay = document.createElement('div');
             overlay.className = 'win-overlay';
             document.body.appendChild(overlay);
 
-            // Gambar efek (GIF)
             const img = document.createElement('img');
             img.src = isJackpot ? 'assets/jackpot_effect.gif' : 'assets/win_effect.gif';
             img.className = 'win-effect-img';
             overlay.appendChild(img);
 
-            // Teks utama (di depan GIF)
             const text = document.createElement('div');
             text.className = 'win-text';
             text.innerHTML = `${randomWord}<br><span class="win-amount">+${formatRupiah(amount)}</span>`;
             overlay.appendChild(text);
 
-            // ✅ Suara kemenangan
-            const winSound = new Audio(isJackpot ? 'assets/sounds/jackpot.mp3' : 'assets/sounds/win.mp3');
-            winSound.volume = isJackpot ? 1.0 : 0.8;
-            winSound.play().catch(err => console.warn("Sound play failed:", err));
+            playSound(isJackpot ? 'jackpot' : 'win');
 
-            // Hapus efek setelah 4 detik
             setTimeout(() => {
                 overlay.classList.add('fade-out');
                 setTimeout(() => overlay.remove(), 1000);
-            }, 4000);
+            }, 2000);
         }
 
-        // ⚡ Efek Thunder (Petir Zeus Style)
-        function triggerThunderEffect() {
-            // Buat elemen overlay transparan untuk petir
-            const thunderOverlay = document.createElement('div');
-            thunderOverlay.className = 'thunder-overlay';
-            document.body.appendChild(thunderOverlay);
-
-            // Gambar petir
-            const thunderImg = document.createElement('img');
-            thunderImg.src = 'assets/effects/thunder.png'; // Ganti dengan gambar petir kamu
-            thunderImg.className = 'thunder-img';
-            thunderOverlay.appendChild(thunderImg);
-
-            // Suara petir
-            const thunderSound = new Audio('assets/sounds/thunder.mp3');
-            thunderSound.volume = 1.0;
-            thunderSound.play().catch(err => console.warn("Gagal memutar suara petir:", err));
-
-            // Animasi sambaran cahaya
-            thunderOverlay.animate([
-                { opacity: 0 },
-                { opacity: 0.9 },
-                { opacity: 0.2 },
-                { opacity: 0.8 },
-                { opacity: 0 }
-            ], {
-                duration: 1200,
-                easing: 'ease-in-out'
-            });
-
-            // Hapus setelah selesai
-            setTimeout(() => thunderOverlay.remove(), 1300);
-        }
-
-        // 💥 Gabungkan dengan Jackpot dan Wild
-        const originalTriggerJackpotEffect = triggerJackpotEffect;
-        triggerJackpotEffect = function () {
-            originalTriggerJackpotEffect();
-            triggerThunderEffect(); // Tambah efek petir
-        };
-
-        // Tambahkan juga ke wild besar (opsional)
-        function triggerWildEffect() {
-            const wildOverlay = document.createElement('div');
-            wildOverlay.className = 'wild-overlay';
-            document.body.appendChild(wildOverlay);
-
-            const img = document.createElement('img');
-            img.src = 'assets/effects/wild_glow.gif';
-            img.className = 'wild-img';
-            wildOverlay.appendChild(img);
-
-            const sound = new Audio('assets/sounds/wild.mp3');
-            sound.volume = 0.9;
-            sound.play().catch(() => { });
-
-            setTimeout(() => wildOverlay.remove(), 2000);
-        }
-
-        // 🏛️ Efek Combo Olympus (Ketika ada kombinasi menang)
         function triggerComboEffect(rowElements) {
-            // Buat background efek Olympus merah
-            const comboBg = document.createElement('div');
-            comboBg.className = 'combo-bg';
-            document.body.appendChild(comboBg);
-            setTimeout(() => comboBg.classList.add('active'), 10);
-
-            // Tambahkan efek ke setiap tile menang
             rowElements.forEach(tile => {
                 tile.style.position = 'relative';
-                tile.style.zIndex = 100;
+                tile.style.zIndex = '100';
                 tile.style.animation = 'comboZoom 1.2s ease-in-out';
 
-                // Efek flash merah
                 tile.animate([
                     { filter: 'brightness(1)', transform: 'scale(1)' },
                     { filter: 'brightness(2) drop-shadow(0 0 20px red)', transform: 'scale(1.3)' },
                     { filter: 'brightness(1)', transform: 'scale(1)' }
                 ], { duration: 1200, easing: 'ease-in-out' });
-
-                // Tambah percikan (spark) random di sekitar tile
-                for (let i = 0; i < 6; i++) {
-                    const spark = document.createElement('div');
-                    spark.className = 'combo-spark';
-                    spark.style.setProperty('--x', `${(Math.random() - 0.5) * 100}px`);
-                    spark.style.setProperty('--y', `${(Math.random() - 0.5) * 100}px`);
-                    tile.appendChild(spark);
-                    setTimeout(() => spark.remove(), 600);
-                }
             });
-
-            // Suara combo (petir ringan)
-            const comboSound = new Audio('assets/sounds/combo.mp3');
-            comboSound.volume = 0.7;
-            comboSound.play().catch(() => { });
-
-            // Hapus efek setelah beberapa detik
-            setTimeout(() => {
-                comboBg.classList.remove('active');
-                setTimeout(() => comboBg.remove(), 600);
-            }, 1800);
         }
 
-        autoSpinBtn.addEventListener("click", () => {
-            if (!autoSpinActive) {
-                autoSpinActive = true;
-                autoSpinBtn.classList.add("active");
-                autoSpinBtn.textContent = "STOP AUTO";
-
-                // Jalankan spin setiap 3 detik
-                autoSpinInterval = setInterval(() => {
-                    if (!spinBtn.disabled) {
-                        spinBtn.click();
-                    }
-                }, 3000);
-            } else {
-                autoSpinActive = false;
-                autoSpinBtn.classList.remove("active");
-                autoSpinBtn.textContent = "AUTO SPIN";
-                clearInterval(autoSpinInterval);
-            }
-        });
-
-        // Jalankan game
         initGame();
     </script>
 </body>
 
 </html>
+```
